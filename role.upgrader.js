@@ -16,17 +16,19 @@ var roleUpgrader = {
             // creep.moveTo(Game.spawns['Spawn1']);
             // return
             // if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-            // if(creep.upgradeController(Game.spawns['Spawn1'].room.controller)
-            //     == ERR_NOT_IN_RANGE) {
-            //     creep.moveTo(
-            //         Game.spawns['Spawn1'].room.controller,
-            //         {
-            //             visualizePathStyle: {stroke: '#ffffff'},
-            //             maxRooms: creep.room === Game.spawns['Spawn1'].room ? 1 : 16
-            //         }
-            //    );
+            if(creep.upgradeController(Game.spawns['Spawn1'].room.controller)
+                == ERR_NOT_IN_RANGE && creep.room === Game.spawns['Spawn1'].room) {
+                creep.moveTo(
+                    Game.spawns['Spawn1'].room.controller,
+                    {
+                        visualizePathStyle: {stroke: '#ffffff'}
+                    }
+                    //     ,
+                    //     maxRooms: creep.room === Game.spawns['Spawn1'].room ? 1 : 16
+                    // }
+               );
                 // creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
-            // }
+            }
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
