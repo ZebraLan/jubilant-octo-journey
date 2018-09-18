@@ -20,7 +20,10 @@ var roleUpgrader = {
                 == ERR_NOT_IN_RANGE) {
                 creep.moveTo(
                     Game.spawns['Spawn1'].room.controller,
-                    {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: creep.room === Game.spawns['Spawn1'].room ? : 16}
+                    {
+                        visualizePathStyle: {stroke: '#ffffff'},
+                        maxRooms: creep.room === Game.spawns['Spawn1'].room ? 1 : 16
+                    }
                 );
                 // creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
             }
