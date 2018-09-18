@@ -21,11 +21,9 @@ var roleUpgrader = {
                 creep.moveTo(
                     Game.spawns['Spawn1'].room.controller,
                     {
-                        visualizePathStyle: {stroke: '#ffffff'}
+                        visualizePathStyle: {stroke: '#ffffff'},
+                        maxRooms: creep.room === Game.spawns['Spawn1'].room ? 1 : 16
                     }
-                    //     ,
-                    //     maxRooms: creep.room === Game.spawns['Spawn1'].room ? 1 : 16
-                    // }
                );
                 // creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
             }
