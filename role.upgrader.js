@@ -26,7 +26,7 @@ var roleUpgrader = {
             //         }
             //    );
                 // creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
-            }
+            // }
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
