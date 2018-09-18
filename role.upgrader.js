@@ -13,12 +13,18 @@ var roleUpgrader = {
         }
 
         if(creep.memory.upgrading) {
-            creep.moveTo(Game.spawns['Spawn1']);
-            return
+            // creep.moveTo(Game.spawns['Spawn1']);
+            // return
             // if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
             if(creep.upgradeController(Game.spawns['Spawn1'].room.controller)
                 == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Game.spawns['Spawn1'].room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+                creep.moveTo(
+                    Game.spawns['Spawn1'].room.controller,
+                    {
+                        visualizePathStyle: {stroke: '#ffffff'},
+                        maxRooms: creep.room === Game.spawns['Spawn1'].room ? : 16
+                    }
+                );
                 // creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
             }
         }
