@@ -8,7 +8,7 @@ var roleUpgrader = {
             creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE  &&
             creep.fatigue == 0
         ) {
-            creep.say('⚡ upgrade');
+            creep.say('⚡ upgrade' + '@' + creep.room);
             creep.moveByPath(
                 PathFinder.search(
                     creep.pos,
