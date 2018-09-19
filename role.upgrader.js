@@ -16,8 +16,9 @@ var roleUpgrader = {
         if(creep.memory.upgrading &&
             (!(creep.room.controller instanceof OwnedStructure) ||
                 !creep.room.controller.my ||
-                creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) &&
-            creep.fatigue == 0
+                creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE)
+            // &&
+            // creep.fatigue == 0
         ) {
             creep.moveTo(
                 [
@@ -29,7 +30,6 @@ var roleUpgrader = {
                     .map((name) => Game.rooms[name].controller)
                 ].find((controller) => controller instanceof OwnedStructure && controller.my))
         }
-
         else {
             var sources = [
                 creep.room,
