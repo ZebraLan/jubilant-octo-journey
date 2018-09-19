@@ -5,18 +5,20 @@ var roleUpgrader = {
         if(creep.carry.energy == creep.carryCapacity &&
             creep.room.controller instanceof OwnedStructure &&
             creep.room.controller.my &&
-            creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-            if(creep.fatigue == 0) {
-                creep.say('⚡ upgrade');
-                creep.moveByPath(
-                    creep.room.findPath(
-                        creep.pos,
-                        creep.room.controller.pos))
-            }
+            creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE  &&
+            creep.fatigue == 0
+        ) {
+            creep.say('⚡ upgrade');
+            creep.moveByPath(
+                creep.room.findPath(
+                    creep.pos,
+                    creep.room.controller.pos))
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE &&
+                creep.fatigue == 0
+            ) {
                 creep.say('🔄 harvest');
                 creep.moveByPath(
                     creep.room.findPath(
