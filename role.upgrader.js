@@ -2,13 +2,23 @@ var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        if(creep.carry.energy == creep.carryCapacity &&
+
+        if(creep.memory.upgrading && creep.carry.energy == 0) {
+            creep.memory.upgrading = false;
+            creep.say('🔄 harvest');
+	}
+
+        if(!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.upgrading = true;
+            creep.say('⚡ upgrade');
+        }
+
+        if(creep.memory.upgrading &&
             (!(creep.room.controller instanceof OwnedStructure) ||
                 !creep.room.controller.my ||
                 creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) &&
             creep.fatigue == 0
         ) {
-            creep.say('⚡ upgrade');
             creep.moveTo(
                 [
                     creep.room.controller,
@@ -19,6 +29,7 @@ var roleUpgrader = {
                     .map((name) => Game.rooms[name].controller)
                 ].find((controller) => controller instanceof OwnedStructure && controller.my))
         }
+
         else {
             var sources = [
                 creep.room,
@@ -31,7 +42,6 @@ var roleUpgrader = {
             if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE &&
                 creep.fatigue == 0
             ) {
-                creep.say('🔄 harvest');
                 creep.moveTo(sources[0]);
             }
         }
