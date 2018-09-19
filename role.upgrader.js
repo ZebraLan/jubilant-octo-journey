@@ -4,7 +4,7 @@ var roleUpgrader = {
     run: function(creep) {
         if(creep.carry.energy == creep.carryCapacity &&
             (!(creep.room.controller instanceof OwnedStructure) ||
-                !creep.controller.my ||
+                !creep.room.controller.my ||
                 creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) &&
             creep.fatigue == 0
         ) {
