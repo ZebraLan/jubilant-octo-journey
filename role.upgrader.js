@@ -8,12 +8,13 @@ var roleUpgrader = {
             creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE  &&
             creep.fatigue == 0
         ) {
-            creep.say('⚡ upgrade' + '@' + creep.room);
-            creep.moveByPath(
-                PathFinder.search(
-                    creep.pos,
-                    {pos: creep.room.controller.pos, range: 1},
-                    {maxRooms: 1}))
+            creep.say('⚡ upgrade');
+            creep.moveTo(creep.room.controller);
+            // creep.moveByPath(
+            //     PathFinder.search(
+            //         creep.pos,
+            //         {pos: creep.room.controller.pos, range: 1},
+            //         {maxRooms: 1}))
                 // creep.room.findPath(
                 //     creep.pos,
                 //     creep.room.controller.pos))
@@ -24,11 +25,12 @@ var roleUpgrader = {
                 creep.fatigue == 0
             ) {
                 creep.say('🔄 harvest');
-                creep.moveByPath(
-                    PathFinder.search(
-                        creep.pos,
-                        {pos: sources[0].pos, range: 1},
-                        {maxRooms: 1}))
+                creep.moveTo(sources[0]);
+                // creep.moveByPath(
+                //     PathFinder.search(
+                //         creep.pos,
+                //         {pos: sources[0].pos, range: 1},
+                //         {maxRooms: 1}))
                     // creep.room.findPath(
                     //     creep.pos,
                     //     sources[0].pos))
