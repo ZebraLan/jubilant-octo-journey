@@ -10,9 +10,13 @@ var roleUpgrader = {
         ) {
             creep.say('⚡ upgrade');
             creep.moveByPath(
-                creep.room.findPath(
+                PathFinder.search(
                     creep.pos,
-                    creep.room.controller.pos))
+                    {pos: creep.room.controller.pos, range: 1},
+                    {maxRooms: 1}))
+                // creep.room.findPath(
+                //     creep.pos,
+                //     creep.room.controller.pos))
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
@@ -21,9 +25,13 @@ var roleUpgrader = {
             ) {
                 creep.say('🔄 harvest');
                 creep.moveByPath(
-                    creep.room.findPath(
+                    PathFinder.search(
                         creep.pos,
-                        sources[0].pos))
+                        {pos: sources[0].pos, range: 1},
+                        {maxRooms: 1}))
+                    // creep.room.findPath(
+                    //     creep.pos,
+                    //     sources[0].pos))
                 // creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
