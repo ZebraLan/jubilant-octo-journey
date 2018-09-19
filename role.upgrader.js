@@ -2,6 +2,17 @@ var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        if((creep.pos.x in [0, 49] || creep.pos.y in [0, 49]) &&
+            creep.fatigue == 0
+        ) {
+            creep.move(
+                creep.pos.y == 0  ? UP    :
+                creep.pos.x == 49 ? RIGHT :
+                creep.pos.y == 49 ? DOWN  :
+                LEFT)
+            return
+        }
+
         if(creep.carry.energy == creep.carryCapacity &&
             creep.room.controller instanceof OwnedStructure &&
             creep.room.controller.my &&
