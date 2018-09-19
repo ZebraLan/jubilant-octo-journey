@@ -3,19 +3,26 @@ var roleUpgrader = {
     /** @param {Creep} creep **/
     run: function(creep) {
         if(creep.carry.energy == creep.carryCapacity &&
+            creep.room.controller instanceof OwnedStructure &&
             creep.room.controller.my &&
             creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-            creep.say('⚡ upgrade');
-            creep.moveByPath(
-                creep.room.findPath(
-                    creep.pos,
-                    creep.room.controller.pos))
+            if(creep.fatigue == 0) {
+                creep.say('⚡ upgrade');
+                creep.moveByPath(
+                    creep.room.findPath(
+                        creep.pos,
+                        creep.room.controller.pos))
+            }
         }
         else {
-            creep.say('🔄 harvest');
             var sources = creep.room.find(FIND_SOURCES);
             if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                creep.say('🔄 harvest');
+                creep.moveByPath(
+                    creep.room.findPath(
+                        creep.pos,
+                        sources[0].pos))
+                // creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
             }
         }
     }
